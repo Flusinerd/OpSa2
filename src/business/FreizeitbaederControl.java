@@ -45,7 +45,8 @@ public class FreizeitbaederControl {
 				model.schreibeFreizeitbaederInCsvDatei();
 				view.zeigeInformationsfensterAn("CSV Datei erfolgreich gespeichert");
 			} else {
-				view.zeigeInformationsfensterAn("Noch nicht Implementiert");
+				model.schreibeFreizeitbaederInTextDate();
+				view.zeigeInformationsfensterAn("Text Datei erfolgreich gespeichert");
 			}
 		}catch(IOException exc) {
 			view.zeigeFehlermeldungsfensterAn("IOException", "IOException beim Speichern!");

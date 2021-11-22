@@ -1,10 +1,9 @@
 package business;
-
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
 
-import ownUtil.PlausiException;
+import factory.CsvCreator;
+import factory.TextCreator;
+import factory.Writer;
 
 public class FreizeitbaederModel {
 
@@ -24,9 +23,14 @@ public class FreizeitbaederModel {
 	}
 
 	public void schreibeFreizeitbaederInCsvDatei() throws IOException {
-		BufferedWriter aus = new BufferedWriter(
-				new FileWriter("Freizeitbaeder.csv", true));
-		aus.write(freizeitbad.gibFreizeitbadZurueck(';'));
-		aus.close();
+		Writer writer = new CsvCreator().factoryMethod();
+		writer.fuegeInDateiHinzu(freizeitbad);
+		writer.schliesseDatei();
+	}
+	
+	public void schreibeFreizeitbaederInTextDate() throws IOException {
+		Writer writer = new TextCreator().factoryMethod();
+		writer.fuegeInDateiHinzu(freizeitbad);
+		writer.schliesseDatei();
 	}
 }
