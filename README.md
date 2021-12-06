@@ -1,4 +1,4 @@
-# Praktikum Software Objektorientierte Programmiertechniken
+# Praktikum Objektorientierte Programmiertechniken
 
 Author: Jan Krüger
 
