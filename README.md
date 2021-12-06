@@ -1,6 +1,6 @@
 # Praktikum Software Objektorientierte Programmiertechniken
 
-Author: Jan Krüger 018103847
+Author: Jan Krüger
 
 ## Versuche
 - [X] Versuch 1 - Git und MVC
