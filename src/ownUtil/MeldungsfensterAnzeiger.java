@@ -5,8 +5,8 @@ import javafx.scene.control.Alert.AlertType;
 
 public class MeldungsfensterAnzeiger {
 	
-	private AlertType alertTyp;	
-	private String titel;
+	private final AlertType alertTyp;
+	private final String titel;
 	private String meldung;
 	
 	public MeldungsfensterAnzeiger(AlertType alertTyp, String titel, String meldung){

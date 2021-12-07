@@ -1,6 +1,5 @@
-package gui;
+package gui.guiFreizeitbaeder;
 
-import business.FreizeitbaederControl;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -17,36 +16,36 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import ownUtil.MeldungsfensterAnzeiger;
 
-public class FreizeitbaederView {
+public class FreizeitbaederView{
 
-	private FreizeitbaederControl control;
+	private final FreizeitbaederControl control;
 
 	// ---Anfang Attribute der grafischen Oberflaeche---
-	private Pane pane = new Pane();
-	private Label lblEingabe = new Label("Eingabe");
-	private Label lblAnzeige = new Label("Anzeige");
-	private Label lblName = new Label("Name:");
-	private Label lblGeoeffnetVon = new Label("Geöffnet von:");
-	private Label lblGeoeffnetBis = new Label("Geöffnet bis:");
-	private Label lblBeckenlaenge = new Label("Beckenlänge:");
-	private Label lblWassTemperatur = new Label("Wassertemperatur:");
-	private TextField txtName = new TextField();
-	private TextField txtGeoeffnetVon = new TextField();
-	private TextField txtGeoeffnetBis = new TextField();
-	private TextField txtBeckenlaenge = new TextField();
-	private TextField txtWassTemperatur = new TextField();
-	private TextArea txtAnzeige = new TextArea();
+	private final Pane pane = new Pane();
+	private final Label lblEingabe = new Label("Eingabe");
+	private final Label lblAnzeige = new Label("Anzeige");
+	private final Label lblName = new Label("Name:");
+	private final Label lblGeoeffnetVon = new Label("Geï¿½ffnet von:");
+	private final Label lblGeoeffnetBis = new Label("Geï¿½ffnet bis:");
+	private final Label lblBeckenlaenge = new Label("Beckenlï¿½nge:");
+	private final Label lblWassTemperatur = new Label("Wassertemperatur:");
+	private final TextField txtName = new TextField();
+	private final TextField txtGeoeffnetVon = new TextField();
+	private final TextField txtGeoeffnetBis = new TextField();
+	private final TextField txtBeckenlaenge = new TextField();
+	private final TextField txtWassTemperatur = new TextField();
+	private final TextArea txtAnzeige = new TextArea();
 
 	public TextArea getTxtAnzeige() {
 		return txtAnzeige;
 	}
 
-	private Button btnEingabe = new Button("Eingabe");
-	private Button btnAnzeige = new Button("Anzeige");
-	private MenuBar mnbrMenuLeiste = new MenuBar();
-	private Menu mnDatei = new Menu("Datei");
-	private MenuItem mnItmCsvExport = new MenuItem("csv-Export");
-	private MenuItem mnItmTxtExport = new MenuItem("txt-Export");
+	private final Button btnEingabe = new Button("Eingabe");
+	private final Button btnAnzeige = new Button("Anzeige");
+	private final MenuBar mnbrMenuLeiste = new MenuBar();
+	private final Menu mnDatei = new Menu("Datei");
+	private final MenuItem mnItmCsvExport = new MenuItem("csv-Export");
+	private final MenuItem mnItmTxtExport = new MenuItem("txt-Export");
 	// -------Ende Attribute der grafischen Oberflaeche-------
 
 	public FreizeitbaederView(FreizeitbaederControl control, Stage primaryStage) {
@@ -55,7 +54,7 @@ public class FreizeitbaederView {
 		this.control = control;
 		Scene scene = new Scene(this.pane, 560, 340);
 		primaryStage.setScene(scene);
-		primaryStage.setTitle("Verwaltung von Freizeitbädern");
+		primaryStage.setTitle("Verwaltung von Freizeitbï¿½dern");
 		primaryStage.show();
 	}
 
@@ -119,37 +118,17 @@ public class FreizeitbaederView {
 	}
 
 	private void initListener() {
-		btnEingabe.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent e) {
-				control.nehmeFreizeitbadAuf(txtName.getText(), txtGeoeffnetVon.getText(), txtGeoeffnetBis.getText(),
-						txtBeckenlaenge.getText(), txtWassTemperatur.getText());
-			}
-		});
-		btnAnzeige.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent e) {
-				control.zeigeFreizeitbaederAn();
-			}
-		});
+		btnEingabe.setOnAction(e -> control.nehmeFreizeitbadAuf(txtName.getText(), txtGeoeffnetVon.getText(), txtGeoeffnetBis.getText(),
+				txtBeckenlaenge.getText(), txtWassTemperatur.getText()));
+
+		btnAnzeige.setOnAction(e -> control.zeigeFreizeitbaederAn());
 		
-		mnItmCsvExport.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent e) {
-				control.schreibeFreizeitbaederInDatei("csv");
-			}
-		});
+		mnItmCsvExport.setOnAction(e -> control.schreibeFreizeitbaederInDatei("csv"));
 		
-		mnItmTxtExport.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent e) {
-				control.schreibeFreizeitbaederInDatei("txt");
-			}
-		});
+		mnItmTxtExport.setOnAction(e -> control.schreibeFreizeitbaederInDatei("txt"));
 	}
-	
+
 	public void zeigeInformationsfensterAn(String meldung) {
-		new MeldungsfensterAnzeiger(AlertType.INFORMATION, "Information", meldung).zeigeMeldungsfensterAn();
 	}
 
 	public void zeigeFehlermeldungsfensterAn(String fehlertyp, String meldung) {

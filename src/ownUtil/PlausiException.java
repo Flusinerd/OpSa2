@@ -7,8 +7,8 @@ public class PlausiException extends Exception {
 	public static final String FORMAL = "formal";
 	public static final String INHALTLICH = "inhaltlich";
 	
-	private String plausiTyp;
-	private String feldname;
+	private final String plausiTyp;
+	private final String feldname;
 
 	public PlausiException(String plausiTyp, String feldname){
 		this.plausiTyp = plausiTyp;

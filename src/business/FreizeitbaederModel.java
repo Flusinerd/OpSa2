@@ -5,13 +5,17 @@ import factory.CsvCreator;
 import factory.TextCreator;
 import factory.Writer;
 
-public class FreizeitbaederModel {
-
-	private FreizeitbaederControl controller;
+public class FreizeitbaederModel extends FreizeitbaederObservable{
 	private Freizeitbad freizeitbad;
+	private static FreizeitbaederModel model;
 
-	public FreizeitbaederModel(FreizeitbaederControl controller) {
-		this.controller = controller;
+	private FreizeitbaederModel() {}
+
+	public static FreizeitbaederModel getInstance() {
+		if(model == null){
+			model = new FreizeitbaederModel();
+		}
+		return model;
 	}
 	
 	public Freizeitbad getFreizeitbad() {
@@ -20,6 +24,8 @@ public class FreizeitbaederModel {
 
 	public void setFreizeitbad(Freizeitbad freizeitbad) {
 		this.freizeitbad = freizeitbad;
+		// Notify the observers about the new data
+		this.notifyObservers();
 	}
 
 	public void schreibeFreizeitbaederInCsvDatei() throws IOException {
