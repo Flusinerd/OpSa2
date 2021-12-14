@@ -18,15 +18,14 @@ public class TextWriter extends Writer {
 		}
 		String output = "Daten des Freizeitbades\n"+
 		"Name des Freizeitbads: \t\t"+freizeitbad.getName()
-		+"\nÖffnungszeiten des Freizeitbads: \t\t" + freizeitbad.getGeoeffnetVon()+" - "+freizeitbad.getGeoeffnetBis()
-		+"\nBeckenlänge des Freizeitbads: \t\t" + freizeitbad.getBeckenlaenge()
+		+"\nï¿½ffnungszeiten des Freizeitbads: \t\t" + freizeitbad.getGeoeffnetVon()+" - "+freizeitbad.getGeoeffnetBis()
+		+"\nBeckenlï¿½nge des Freizeitbads: \t\t" + freizeitbad.getBeckenlaenge()
 		+"\nWassertemperatur des Freizeitbads: \t\t" + freizeitbad.getTemperatur();
-		aus.write(output);
+		aus.write(output+"\n"+"\n");
 	}
 
 	@Override
 	public void schliesseDatei() throws IOException {
-		// TODO Auto-generated method stub
 		this.aus.close();
 	}
 	

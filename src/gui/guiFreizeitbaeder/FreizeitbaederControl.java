@@ -1,13 +1,12 @@
 package gui.guiFreizeitbaeder;
 
-import java.io.IOException;
-
 import business.Freizeitbad;
 import business.FreizeitbaederModel;
-import gui.guiFreizeitbaeder.FreizeitbaederView;
 import javafx.stage.Stage;
 import observer.Observer;
 import ownUtil.PlausiException;
+
+import java.io.IOException;
 
 public class FreizeitbaederControl implements Observer {
 
@@ -29,7 +28,7 @@ public class FreizeitbaederControl implements Observer {
 			String wasserTemp) {
 		try {
 			Freizeitbad bad = new Freizeitbad(name, geoeffnet, geoeffnetBis, beckenlaenge, wasserTemp);
-			this.model.setFreizeitbad(bad);
+			this.model.addFreizeitbad(bad);
 		} catch (PlausiException exc) {
 			view.zeigeFehlermeldungsfensterAn(exc.getPlausiTyp() + "er ", exc.getMessage());
 		}
@@ -37,8 +36,13 @@ public class FreizeitbaederControl implements Observer {
 
 	public void zeigeFreizeitbaederAn() {
 
-		if (this.model.getFreizeitbad() != null) {
-			this.view.getTxtAnzeige().setText(this.model.getFreizeitbad().gibFreizeitbadZurueck(' '));
+		if(model.getFreizeitbaeder().size() > 0){
+			StringBuilder text = new StringBuilder();
+
+			for (Freizeitbad freizeitbad: this.model.getFreizeitbaeder()) {
+				text.append(freizeitbad.gibFreizeitbadZurueck(' ')).append("\n");
+			}
+			this.view.getTxtAnzeige().setText(text.toString());
 		} else {
 			view.zeigeInformationsfensterAn("Bisher wurde kein Freizeitbad aufgenommen!");
 		}

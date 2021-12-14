@@ -16,13 +16,11 @@ public class CSVWriter extends Writer{
 			this.aus = new BufferedWriter(
 					new FileWriter("Freizeitbaeder.csv", true));
 		}
-		this.aus.write(freizeitbad.gibFreizeitbadZurueck(';'));
-		
+		this.aus.write(freizeitbad.gibFreizeitbadZurueck(';') + "\n");
 	}
 
 	@Override
 	public void schliesseDatei() throws IOException {
-		// TODO Auto-generated method stub
 		this.aus.close();
 	}
 	

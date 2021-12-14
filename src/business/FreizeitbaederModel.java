@@ -1,42 +1,52 @@
 package business;
+
 import java.io.IOException;
+import java.util.ArrayList;
 
 import factory.CsvCreator;
 import factory.TextCreator;
 import factory.Writer;
 
-public class FreizeitbaederModel extends FreizeitbaederObservable{
-	private Freizeitbad freizeitbad;
-	private static FreizeitbaederModel model;
+public class FreizeitbaederModel extends FreizeitbaederObservable {
+    private final ArrayList<Freizeitbad> freizeitbaeder = new ArrayList<>();
+    private static FreizeitbaederModel model;
 
-	private FreizeitbaederModel() {}
+    private FreizeitbaederModel() {
+    }
 
-	public static FreizeitbaederModel getInstance() {
-		if(model == null){
-			model = new FreizeitbaederModel();
-		}
-		return model;
-	}
-	
-	public Freizeitbad getFreizeitbad() {
-		return freizeitbad;
-	}
+    public static FreizeitbaederModel getInstance() {
+        if (model == null) {
+            model = new FreizeitbaederModel();
+        }
+        return model;
+    }
 
-	public void setFreizeitbad(Freizeitbad freizeitbad) {
-		this.freizeitbad = freizeitbad;
-		// Notify the observers about the new data
-		this.notifyObservers();
-	}
+    public ArrayList<Freizeitbad> getFreizeitbaeder() {
+        return freizeitbaeder;
+    }
 
-	public void schreibeFreizeitbaederInCsvDatei() throws IOException {
-		Writer writer = new CsvCreator().factoryMethod();
-		writer.fuegeInDateiHinzu(freizeitbad);
-		writer.schliesseDatei();
-	}
-	
-	public void schreibeFreizeitbaederInTextDate() throws IOException {
-		Writer writer = new TextCreator().factoryMethod();
-		writer.fuegeInDateiHinzu(freizeitbad);
-		writer.schliesseDatei();
-	}
+    public void addFreizeitbad(Freizeitbad freizeitbad) {
+        // Only add if the freizeitbad is not already in the list
+        if (!this.freizeitbaeder.contains(freizeitbad)) {
+            this.freizeitbaeder.add(freizeitbad);
+            // Notify observers
+            this.notifyObservers();
+        }
+    }
+
+    public void schreibeFreizeitbaederInCsvDatei() throws IOException {
+        Writer writer = new CsvCreator().factoryMethod();
+        for (Freizeitbad freizeitbad : freizeitbaeder) {
+            writer.fuegeInDateiHinzu(freizeitbad);
+        }
+        writer.schliesseDatei();
+    }
+
+    public void schreibeFreizeitbaederInTextDate() throws IOException {
+        Writer writer = new TextCreator().factoryMethod();
+        for (Freizeitbad freizeitbad : freizeitbaeder) {
+            writer.fuegeInDateiHinzu(freizeitbad);
+        }
+        writer.schliesseDatei();
+    }
 }

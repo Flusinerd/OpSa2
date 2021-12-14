@@ -1,7 +1,6 @@
 package gui.guiSportstaetten;
 
 import business.FreizeitbaederModel;
-import javafx.event.*;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
@@ -11,33 +10,33 @@ import observer.Observer;
 import ownUtil.*;
 
 public class SportstaettenView implements Observer {
-    private SportstaettenControl control;
+    private final SportstaettenControl control;
 
     //---Anfang Attribute der grafischen Oberflaeche---
     private final Pane pane
-            = new  Pane();
+            = new Pane();
     private final Label lblAnzeigeFreizeitbaeder
             = new Label("Anzeige Freizeitbäder");
-    private final TextArea txtAnzeigeFreizeitbaeder  = new TextArea();
+    private final TextArea txtAnzeigeFreizeitbaeder = new TextArea();
     private final Button btnAnzeigeFreizeitbaeder = new Button("Anzeige");
-    private final FreizeitbaederModel freizeitbaederModel;
     //-------Ende Attribute der grafischen Oberflaeche-------
 
-    public SportstaettenView(SportstaettenControl control, Stage primaryStage){
+    public SportstaettenView(SportstaettenControl control, Stage primaryStage) {
         Scene scene = new Scene(this.pane, 560, 340);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Anzeige von Sportstätten");
         primaryStage.show();
-        this.freizeitbaederModel = FreizeitbaederModel.getInstance();
+        FreizeitbaederModel freizeitbaederModel = FreizeitbaederModel.getInstance();
         this.control = control;
 
         this.initKomponenten();
         this.initListener();
 
         // Subscribe to the observable
-        this.freizeitbaederModel.addObserver(this);
+        freizeitbaederModel.addObserver(this);
     }
-    private void initKomponenten(){
+
+    private void initKomponenten() {
         // Label
         Font font = new Font("Arial", 20);
         lblAnzeigeFreizeitbaeder.setLayoutX(310);
@@ -68,7 +67,7 @@ public class SportstaettenView implements Observer {
                 e -> control.zeigeFreizeitbaederAn());
     }
 
-    public void zeigeInformationsfensterAn(String meldung){
+    public void zeigeInformationsfensterAn(String meldung) {
         new MeldungsfensterAnzeiger(Alert.AlertType.INFORMATION,
                 "Information", meldung).zeigeMeldungsfensterAn();
     }

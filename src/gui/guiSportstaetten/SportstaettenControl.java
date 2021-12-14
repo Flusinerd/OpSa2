@@ -1,5 +1,6 @@
 package gui.guiSportstaetten;
 
+import business.Freizeitbad;
 import business.FreizeitbaederModel;
 import javafx.stage.Stage;
 
@@ -13,10 +14,13 @@ public class SportstaettenControl {
     }
 
     public void zeigeFreizeitbaederAn(){
-        if(model.getFreizeitbad() != null){
-            view.getTxtAnzeigeFreizeitbaeder().setText(
-                    this.model.getFreizeitbad()
-                            .gibFreizeitbadZurueck(' '));
+        if(model.getFreizeitbaeder().size() > 0){
+            StringBuilder text = new StringBuilder();
+
+            for (Freizeitbad freizeitbad: this.model.getFreizeitbaeder()) {
+                text.append(freizeitbad.gibFreizeitbadZurueck(' ')).append("\n");
+            }
+            this.view.getTxtAnzeigeFreizeitbaeder().setText(text.toString());
         }
         else{
             view.zeigeInformationsfensterAn(
