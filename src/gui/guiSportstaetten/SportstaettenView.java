@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import observer.Observer;
 import ownUtil.*;
 
-public class SportstaettenView implements Observer {
+public class SportstaettenView {
     private final SportstaettenControl control;
 
     //---Anfang Attribute der grafischen Oberflaeche---
@@ -31,9 +31,6 @@ public class SportstaettenView implements Observer {
 
         this.initKomponenten();
         this.initListener();
-
-        // Subscribe to the observable
-        freizeitbaederModel.addObserver(this);
     }
 
     private void initKomponenten() {
@@ -55,11 +52,6 @@ public class SportstaettenView implements Observer {
         btnAnzeigeFreizeitbaeder.setLayoutX(310);
         btnAnzeigeFreizeitbaeder.setLayoutY(290);
         pane.getChildren().add(btnAnzeigeFreizeitbaeder);
-    }
-
-    @Override
-    public void update() {
-        this.control.zeigeFreizeitbaederAn();
     }
 
     private void initListener() {
