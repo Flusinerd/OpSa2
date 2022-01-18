@@ -1,11 +1,11 @@
-package business;
+package business.freizeitbad;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-import factory.CsvCreator;
-import factory.TextCreator;
-import factory.Writer;
+import factory.freizeitbaeder.CsvCreator;
+import factory.freizeitbaeder.TextCreator;
+import factory.freizeitbaeder.Writer;
 
 public class FreizeitbaederModel extends FreizeitbaederObservable {
     private final ArrayList<Freizeitbad> freizeitbaeder = new ArrayList<>();

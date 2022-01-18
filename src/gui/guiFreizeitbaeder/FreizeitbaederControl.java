@@ -1,7 +1,7 @@
 package gui.guiFreizeitbaeder;
 
-import business.Freizeitbad;
-import business.FreizeitbaederModel;
+import business.freizeitbad.Freizeitbad;
+import business.freizeitbad.FreizeitbaederModel;
 import javafx.stage.Stage;
 import observer.Observer;
 import ownUtil.PlausiException;

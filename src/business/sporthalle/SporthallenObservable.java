@@ -1,4 +1,4 @@
-package business;
+package business.sporthalle;
 
 import observer.Observable;
 import observer.Observer;
@@ -9,7 +9,7 @@ import java.util.Vector;
  * Class that implements Observable
  * Extend from this and call notifyObservers when needed
  */
-public class FreizeitbaederObservable implements Observable {
+public class SporthallenObservable implements Observable {
     private final Vector<Observer> observers = new Vector<>();
 
     @Override

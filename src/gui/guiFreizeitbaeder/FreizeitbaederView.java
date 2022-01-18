@@ -36,8 +36,11 @@ public class FreizeitbaederView{
 	private final Button btnAnzeige = new Button("Anzeige");
 	private final MenuBar mnbrMenuLeiste = new MenuBar();
 	private final Menu mnDatei = new Menu("Datei");
-	private final MenuItem mnItmCsvExport = new MenuItem("csv-Export");
-	private final MenuItem mnItmTxtExport = new MenuItem("txt-Export");
+
+	// Submenu freizeitbaeder
+	private final Menu subMenuFreizeitbaeder = new Menu("Freizeitbäder");
+	private final MenuItem mnItmCsvExportFreizeitbaeder = new MenuItem("csv-Export");
+	private final MenuItem mnItmTxtExportFreizeitbaeder = new MenuItem("txt-Export");
 	// -------Ende Attribute der grafischen Oberflaeche-------
 
 	public FreizeitbaederView(FreizeitbaederControl control, Stage primaryStage) {
@@ -103,9 +106,15 @@ public class FreizeitbaederView{
 		pane.getChildren().addAll(btnEingabe, btnAnzeige);
 
 		// Menu
+		initMenu();
+	}
+
+	private void initMenu() {
 		this.mnbrMenuLeiste.getMenus().add(mnDatei);
-		this.mnDatei.getItems().add(mnItmCsvExport);
-		this.mnDatei.getItems().add(mnItmTxtExport);
+		this.mnDatei.getItems().add(subMenuFreizeitbaeder);
+
+		this.subMenuFreizeitbaeder.getItems().add(mnItmCsvExportFreizeitbaeder);
+		this.subMenuFreizeitbaeder.getItems().add(mnItmTxtExportFreizeitbaeder);
 		pane.getChildren().add(mnbrMenuLeiste);
 	}
 
@@ -115,9 +124,9 @@ public class FreizeitbaederView{
 
 		btnAnzeige.setOnAction(e -> control.zeigeFreizeitbaederAn());
 		
-		mnItmCsvExport.setOnAction(e -> control.schreibeFreizeitbaederInDatei("csv"));
+		mnItmCsvExportFreizeitbaeder.setOnAction(e -> control.schreibeFreizeitbaederInDatei("csv"));
 		
-		mnItmTxtExport.setOnAction(e -> control.schreibeFreizeitbaederInDatei("txt"));
+		mnItmTxtExportFreizeitbaeder.setOnAction(e -> control.schreibeFreizeitbaederInDatei("txt"));
 	}
 
 	public void zeigeInformationsfensterAn(String meldung) {

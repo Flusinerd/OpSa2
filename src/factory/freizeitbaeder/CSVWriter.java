@@ -1,10 +1,10 @@
-package factory;
+package factory.freizeitbaeder;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import business.Freizeitbad;
+import business.freizeitbad.Freizeitbad;
 
 public class CSVWriter extends Writer{
 	

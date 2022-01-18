@@ -1,8 +1,8 @@
-package factory;
+package factory.freizeitbaeder;
 
 import java.io.IOException;
 
-import business.Freizeitbad;
+import business.freizeitbad.Freizeitbad;
 
 public abstract class Writer {
 	/**

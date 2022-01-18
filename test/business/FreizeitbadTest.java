@@ -1,5 +1,6 @@
 package business;
 
+import business.freizeitbad.Freizeitbad;
 import org.junit.jupiter.api.Test;
 import ownUtil.PlausiException;
 

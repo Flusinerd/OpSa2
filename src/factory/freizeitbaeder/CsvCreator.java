@@ -1,4 +1,4 @@
-package factory;
+package factory.freizeitbaeder;
 
 public class CsvCreator extends Creator {
 
